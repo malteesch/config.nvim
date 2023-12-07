@@ -11,4 +11,6 @@ vim.keymap.set('n', '<A-l>', '<C-w>l')
 vim.keymap.set('n', '<leader>c', '<C-w>q') -- close window
 vim.keymap.set('n', '<leader>s', '<C-w>s') -- split window
 vim.keymap.set('n', '<leader>v', '<C-w>v') -- split window vertically
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
