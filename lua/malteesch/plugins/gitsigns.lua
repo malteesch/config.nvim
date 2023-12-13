@@ -35,4 +35,7 @@ return {
         end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
       end,
     },
+    keys = {
+      {'<leader>gb', '<cmd>Gitsigns blame_line<CR>', desc = '[G]it [b]lame line'}
+    }
   }
