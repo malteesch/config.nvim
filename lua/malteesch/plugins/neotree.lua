@@ -1,6 +1,3 @@
--- Unless you are still migrating, remove the deprecated commands from v1.x
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 -- vim.keymap.set('n', '<leader>fo', ':Neotree focus position=float<CR>')
 
 return {
@@ -19,5 +16,8 @@ return {
       },
       popup_border_style = 'rounded'
     }
-  end
+  end,
+  keys = {
+    {'<leader>fo', '<cmd>Neotree focus position=float<CR>', 'n', desc = '[F]iletree [o]pen'}
+  }
 }

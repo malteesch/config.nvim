@@ -14,3 +14,17 @@ vim.keymap.set('n', '<leader>v', '<C-w>v') -- split window vertically
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
+vim.keymap.set('n', '<leader>gp', function ()
+	vim.cmd('Git pull')
+end, { desc = "git pull"})
+vim.keymap.set('n', '<leader>gb', function ()
+	vim.cmd('Gitsigns blame_line')
+end, { desc = 'git blame line' })
+
+vim.keymap.set('n', '<leader>gl', function()
+	local cwd = vim.fn.getcwd()
+	local prj = cwd:gsub('/home/malteesch/projects/digibss/', '')
+	if cwd:match '^/home/malteesch/projects/digibss/' then
+		vim.fn.system({'xdg-open', 'https://gitlab.devops.telekom.de/' .. prj})
+	end
+end, { desc = 'Open project in GitLab'})
