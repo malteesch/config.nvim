@@ -1,42 +1,43 @@
--- GLOBAL
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+local globalOptions = {
+  mapleader = ' ',
+  maplocalleader = ' '
+}
 
--- Set highlight on search
-vim.o.hlsearch = false
+local windowOptions = {
+  relativenumber = true,
+  number = true
+}
 
--- Make line numbers default
-vim.wo.relativenumber = true
-vim.wo.number = true
+local options = {
+  hlsearch = false,
+  mouse = 'a',
+  clipboard = 'unnamedplus',
+  breakindent = true,
+  undofile = true,
+  -- Case-insensitive searching UNLESS \C or capital in search
+  ignorecase = true,
+  smartcase = true,
+  -- Keep signcolumn on by default
+  signcolumn = 'yes',
+  -- Decrease update time
+  updatetime = 250,
+  timeoutlen = 250,
+  -- Set completeopt to have a better completion experience
+  completeopt = 'menuone,noselect',
+  termguicolors = true,
+  wrap = false,
+  sidescroll = 10,
+}
 
--- Enable mouse mode
-vim.o.mouse = 'a'
+for key, value in pairs(globalOptions) do
+  vim.g[key] = value
+end
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+for key, value in pairs(windowOptions) do
+  vim.wo[key] = value
+end
 
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- NOTE: You should make sure your terminal supports this
-vim.o.termguicolors = true
+for key, value in pairs(options) do
+  vim.o[key] = value
+end
 
