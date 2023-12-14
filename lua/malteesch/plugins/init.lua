@@ -5,7 +5,6 @@ return {
 
   'mfussenegger/nvim-dap',
   'mfussenegger/nvim-jdtls',
-  { 'folke/which-key.nvim', opts = {} },
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
