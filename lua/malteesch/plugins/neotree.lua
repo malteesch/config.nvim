@@ -18,6 +18,7 @@ return {
     }
   end,
   keys = {
-    {'<leader>fo', '<cmd>Neotree focus position=float<CR>', 'n', desc = '[F]iletree [o]pen'}
+    {'<leader>fo', '<cmd>Neotree focus position=float<CR>', 'n', desc = '[F]iletree [o]pen'},
+    {'<leader>fc', '<cmd>Neotree focus position=float reveal_file=%<CR>', 'n', desc = '[F]iletree open [c]urrent file'}
   }
 }
