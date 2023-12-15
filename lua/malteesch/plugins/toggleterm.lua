@@ -3,7 +3,8 @@ return {
   version = "*",
   opts = {
     open_mapping = [[<C-\>]],
-    direction = 'float'
+    direction = 'float',
+    autochdir = true
   }
 }
 
