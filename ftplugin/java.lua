@@ -1,5 +1,7 @@
 local home = os.getenv('HOME')
 local jdtls = require('jdtls')
+local mason_registry = require('mason-registry')
+local jdtls_package = mason_registry.get_package('jdtls')
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
@@ -20,7 +22,7 @@ end
 
 -- The on_attach function is used to set key maps after the language server
 -- attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Regular Neovim LSP client keymappings
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   nnoremap('gD', vim.lsp.buf.declaration, bufopts, "Go to declaration")
@@ -143,11 +145,11 @@ local config = {
 
     -- The jar file is located where jdtls was installed. This will need to be updated
     -- to the location where you installed jdtls
-    '-jar', vim.fn.glob('/home/linuxbrew/.linuxbrew/Cellar/jdtls/1.30.0/libexec/plugins/org.eclipse.equinox.launcher_*.jar'),
+    '-jar', vim.fn.glob(jdtls_package:get_install_path() .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
 
     -- The configuration for jdtls is also placed where jdtls was installed. This will
     -- need to be updated depending on your environment
-    '-configuration', '/home/linuxbrew/.linuxbrew/Cellar/jdtls/1.30.0/libexec/config_linux',
+    '-configuration', jdtls_package:get_install_path() .. '/config_linux',
 
     -- Use the workspace_folder defined above to store data for this project
     '-data', workspace_folder,

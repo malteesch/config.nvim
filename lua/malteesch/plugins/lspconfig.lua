@@ -19,6 +19,7 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  jdtls = {}
 }
 
 -- [[ Configure LSP ]]
@@ -107,6 +108,11 @@ return {
           filetypes = (servers[server_name] or {}).filetypes,
         }
       end,
+      jdtls = function (server_name)
+        require('lspconfig')[server_name].setup {
+          autostart = false
+        }
+      end
     }
   end
 }
