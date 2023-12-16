@@ -2,7 +2,8 @@ return {
   'tpope/vim-fugitive',
   event = 'VeryLazy',
   keys = {
-    { '<leader>gp', '<cmd>Git pull<CR>', desc = '[g]it [p]ull'},
+    { '<leader>gp', '<cmd>Git pull<CR>', desc = '[G]it [p]ull'},
+    { '<leader>gP', '<cmd>Git push<CR>', desc = '[G]it [P]ush'},
     { '<leader>gl', function ()
       local cmdOutput = vim.fn.execute('Git remote get-url origin')
       if cmdOutput:match('fatal:') then
