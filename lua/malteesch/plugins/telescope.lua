@@ -15,10 +15,20 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim' }
+    { 'nvim-telescope/telescope-ui-select.nvim' },
+    { 'folke/trouble.nvim' }
   },
   config = function (_, opts)
     local t = require('telescope')
+    local trouble = require('trouble.providers.telescope')
+    opts = vim.tbl_deep_extend("force", {
+      defaults = {
+        mappings = {
+          i = { ['<C-t>'] = trouble.open_with_trouble },
+          n = { ['<C-t>'] = trouble.open_with_trouble }
+        }
+      }
+    }, opts)
     opts.extensions = vim.tbl_extend("force", vim.F.if_nil(opts.extensions, {}), {
       ["ui-select"] = {
         require('telescope.themes').get_dropdown { }
