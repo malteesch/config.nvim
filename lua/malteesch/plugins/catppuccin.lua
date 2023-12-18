@@ -15,7 +15,15 @@ return {
         enabled = true
       },
       which_key = true,
-      mason = true
+      mason = true,
+      leap = true,
+      harpoon = true,
+      noice = true,
+      cmp = true,
+      fidget = true,
+      notify = true,
+      treesitter = true,
+      lsp_trouble = true
     }
   }
 }
