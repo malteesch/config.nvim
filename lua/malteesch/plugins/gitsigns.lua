@@ -5,11 +5,11 @@ return {
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
-        add = { text = '+' },
-        change = { text = '~' },
+        add = { text = '|' },
+        change = { text = '|' },
         delete = { text = '_' },
         topdelete = { text = '‾' },
-        changedelete = { text = '~' },
+        changedelete = { text = '|' },
       },
       on_attach = function(bufnr)
         vim.keymap.set('n', '<leader>ghp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[G]it [h]unk [p]review' })
@@ -37,6 +37,7 @@ return {
       end,
     },
     keys = {
-      {'<leader>gb', '<cmd>Gitsigns blame_line<CR>', desc = '[G]it [b]lame line'}
+      {'<leader>gb', '<cmd>Gitsigns blame_line<CR>', desc = '[G]it [b]lame line'},
+      {'<leader>gd', '<cmd>Gitsigns toggle_word_diff<CR>', desc = 'Toggle [g]it word [d]iff'},
     }
   }
