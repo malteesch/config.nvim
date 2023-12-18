@@ -4,7 +4,10 @@ return {
   opts = {
     open_mapping = [[<C-\>]],
     direction = 'float',
-    autochdir = true
+    autochdir = true,
+    float_opts = {
+      border = 'curved'
+    }
   }
 }
 
