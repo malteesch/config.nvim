@@ -21,7 +21,7 @@ local options = {
   signcolumn = 'yes',
   -- Decrease update time
   updatetime = 250,
-  timeoutlen = 250,
+  timeoutlen = 300,
   -- Set completeopt to have a better completion experience
   completeopt = 'menuone,noselect',
   termguicolors = true,
