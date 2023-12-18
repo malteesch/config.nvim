@@ -24,7 +24,12 @@ return {
       notify = true,
       treesitter = true,
       lsp_trouble = true
-    }
+    },
+    custom_highlights = function (colors)
+      return {
+        CursorLineNr = { fg = colors.teal }
+      }
+    end
   }
 }
 

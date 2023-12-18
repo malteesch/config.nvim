@@ -27,6 +27,8 @@ local options = {
   termguicolors = true,
   wrap = false,
   sidescroll = 10,
+  cursorline = true,
+  cursorlineopt = 'both',
 }
 
 for key, value in pairs(globalOptions) do
