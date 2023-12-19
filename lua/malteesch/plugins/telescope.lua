@@ -50,7 +50,10 @@ return {
     pickers = {
       find_files = {
         theme = 'dropdown'
-      }
+      },
+      oldfiles = {
+        theme = 'dropdown'
+      },
     }
   },
   keys = {
