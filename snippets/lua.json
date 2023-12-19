@@ -1,0 +1,9 @@
+{
+  "lua": {
+    "prefix": "lua",
+    "body": [
+      "lualualua"
+    ]
+    "description": "Example snippet"
+  }
+}

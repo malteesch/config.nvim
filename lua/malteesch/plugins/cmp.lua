@@ -2,25 +2,23 @@ return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
+    'hrsh7th/cmp-nvim-lsp',
     {
       'L3MON4D3/LuaSnip',
       config = function (_, opts)
         require('luasnip.loaders.from_vscode').lazy_load()
+        require('luasnip.loaders.from_vscode').lazy_load({paths = './snippets'})
         require('luasnip').config.setup(opts)
-      end
+      end,
+      dependencies = {
+        'rafamadriz/friendly-snippets',
+        'saadparwaiz1/cmp_luasnip',
+      }
     },
-    'saadparwaiz1/cmp_luasnip',
-
-    -- Adds LSP completion capabilities
-    'hrsh7th/cmp-nvim-lsp',
-
-    -- Adds a number of user-friendly snippets
-    'rafamadriz/friendly-snippets',
   },
   opts = function ()
-    local cmp = require 'cmp'
-    local luasnip = require 'luasnip'
+    local cmp = require('cmp')
+    local luasnip = require('luasnip')
 
     return {
       snippet = {
