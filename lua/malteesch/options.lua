@@ -44,3 +44,6 @@ for key, value in pairs(options) do
   vim.o[key] = value
 end
 
+-- consider hyphen part of a word
+vim.api.nvim_set_option('iskeyword', vim.api.nvim_get_option('iskeyword') .. ',-')
+
