@@ -29,6 +29,7 @@ local options = {
   sidescroll = 10,
   cursorline = true,
   cursorlineopt = 'both',
+  showmode = false
 }
 
 for key, value in pairs(globalOptions) do
