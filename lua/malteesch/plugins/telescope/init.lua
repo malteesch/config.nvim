@@ -66,6 +66,7 @@ return {
     {'<leader>sr', function() require('telescope.builtin').resume() end,  desc = '[R]esume' },
     {'<leader>rf', function() require('telescope.builtin').oldfiles() end, desc = '[R]ecent [f]iles' },
     {'<leader>sb', function() require('telescope.builtin').buffers() end, desc = 'existing [b]uffers' },
+    {'<leader>gl', function() require('malteesch.plugins.telescope.pickers').gitlab() end, desc = 'Open in [G]it[L]ab' },
     {'<leader>/', function ()
       -- You can pass additional configuration to telescope to change theme, layout, etc.
       require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
