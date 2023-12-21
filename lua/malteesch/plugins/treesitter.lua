@@ -7,7 +7,7 @@ return {
   build = ':TSUpdate',
   opts = {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'go', 'lua', 'python', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'kotlin', 'regex', 'markdown', 'markdown_inline' },
+    ensure_installed = { 'go', 'lua', 'python', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'java', 'kotlin', 'regex', 'markdown', 'markdown_inline', 'query' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
