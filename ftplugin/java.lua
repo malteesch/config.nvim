@@ -2,6 +2,7 @@ local home = os.getenv('HOME')
 local jdtls = require('jdtls')
 local mason_registry = require('mason-registry')
 local jdtls_package = mason_registry.get_package('jdtls')
+local java_debug_adapter_package = mason_registry.get_package('java-debug-adapter')
 
 -- File types that signify a Java project's root directory. This will be
 -- used by eclipse to determine what constitutes a workspace
@@ -49,6 +50,22 @@ local on_attach = function(_, bufnr)
   nnoremap("<leader>ec", jdtls.extract_constant, bufopts, "Extract constant")
   vim.keymap.set('v', "<leader>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
     { noremap=true, silent=true, buffer=bufnr, desc = "Extract method" })
+  -- TODO  move this to a more suitable location
+  local function attach_to_debug()
+    local dap = require('dap')
+    dap.configurations.java = {
+      {
+        type = 'java';
+        request = 'attach';
+        name = "Attach to the process";
+        hostName = 'localhost';
+        port = '5005';
+      },
+    }
+    dap.continue()
+  end
+
+  nnoremap('<leader>da', attach_to_debug, bufopts, "Debug attach")
 end
 
 local config = {
@@ -118,7 +135,7 @@ local config = {
         runtimes = {
           {
             name = "JavaSE-17",
-            path = home .. "/.sdkman/candidates/java/17.0.8-graal",
+            path = home .. "/.sdkman/candidates/java/17.0.9-graal",
           },
         }
       }
@@ -130,7 +147,7 @@ local config = {
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
   -- for the full list of options
   cmd = {
-    home .. "/.sdkman/candidates/java/17.0.8-graal/bin/java",
+    home .. "/.sdkman/candidates/java/17.0.9-graal/bin/java",
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
     '-Dosgi.bundles.defaultStartLevel=4',
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -154,6 +171,11 @@ local config = {
     -- Use the workspace_folder defined above to store data for this project
     '-data', workspace_folder,
   },
+  init_options = {
+    bundles = {
+      vim.fn.glob(java_debug_adapter_package:get_install_path() .. '/extension/server/com.microsoft.java.debug.plugin-*.jar')
+    }
+  }
 }
 
 -- Finally, start jdtls. This will run the language server using the configuration we specified,
