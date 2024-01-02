@@ -1,7 +1,6 @@
 return {
-  'okuuva/auto-save.nvim',
-  opts = {
-    enabled = false
-  },
+    'okuuva/auto-save.nvim',
+    opts = {
+        enabled = false,
+    },
 }
-

@@ -1,10 +1,10 @@
 --- @type LazyPluginSpec
 return {
-    "shellRaining/hlchunk.nvim",
-    event = { "UIEnter" },
+    'shellRaining/hlchunk.nvim',
+    event = { 'UIEnter' },
     opts = {
         line_num = {
-            enable = false
-        }
-    }
+            enable = false,
+        },
+    },
 }
