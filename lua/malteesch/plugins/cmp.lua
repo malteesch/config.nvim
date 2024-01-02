@@ -1,3 +1,4 @@
+--- @type LazyPluginSpec
 return {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -15,6 +16,7 @@ return {
                 'saadparwaiz1/cmp_luasnip',
             },
         },
+        "FelipeLema/cmp-async-path",
     },
     opts = function()
         local cmp = require 'cmp'
@@ -61,6 +63,7 @@ return {
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
+                { name = 'async_path' },
             },
         }
     end,
