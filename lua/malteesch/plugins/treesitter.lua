@@ -3,6 +3,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        'windwp/nvim-ts-autotag',
     },
     build = ':TSUpdate',
     opts = {
@@ -25,6 +26,7 @@ return {
             'query',
             'json',
             'yaml',
+            'html',
             'xml',
         },
 
@@ -86,6 +88,9 @@ return {
                 },
             },
         },
+        autotag = {
+            enable = true
+        }
     },
     config = function(_, opts)
         vim.defer_fn(function()
