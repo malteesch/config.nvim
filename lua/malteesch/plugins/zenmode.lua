@@ -26,13 +26,8 @@ return {
             },
         },
     },
+    --- stylua: ignore
     keys = {
-        {
-            '<leader>td',
-            function()
-                require('zen-mode').toggle()
-            end,
-            { desc = '[T]oggle [d]istraction free mode' },
-        },
+        { '<leader>td', function() require('zen-mode').toggle() end, desc = '[d]istraction free mode'  },
     },
 }

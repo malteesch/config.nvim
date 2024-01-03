@@ -4,9 +4,9 @@ vim.keymap.set('n', '<A-j>', '<C-w>j')
 vim.keymap.set('n', '<A-k>', '<C-w>k')
 vim.keymap.set('n', '<A-h>', '<C-w>h')
 vim.keymap.set('n', '<A-l>', '<C-w>l')
-vim.keymap.set('n', '<leader>c', '<C-w>c') -- close buffer
-vim.keymap.set('n', "<leader>-", '<C-w>s') -- split window
-vim.keymap.set('n', '<leader>\\', '<C-w>v') -- split window vertically
+vim.keymap.set('n', '<leader>c', '<C-w>c', { desc = "[C]lose window" })
+vim.keymap.set('n', "<leader>-", '<C-w>s', { desc = "Split window horizontally" })
+vim.keymap.set('n', '<leader>\\', '<C-w>v', { desc = "Split window vertically" })
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 
