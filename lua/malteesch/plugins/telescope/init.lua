@@ -68,6 +68,7 @@ return {
         { '<leader>rf',  function() require('telescope.builtin').oldfiles() end,                 desc = '[R]ecent [f]iles' },
         { '<leader>sb',  function() require('telescope.builtin').buffers() end,                  desc = 'existing [b]uffers' },
         { '<leader>gl',  function() require('malteesch.plugins.telescope.pickers').gitlab() end, desc = 'Open in [G]it[L]ab' },
+        { '<leader>sp',  function() require('malteesch.plugins.telescope.pickers').projects() end, desc = '[P]rojects' },
         { '<leader>sk',  function() require('telescope.builtin').keymaps() end, desc = '[K]eymaps' },
         {
             '<leader>/',

@@ -1,3 +1,7 @@
+local function working_directory()
+    return vim.fn.getcwd()
+end
+
 return {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -11,6 +15,9 @@ return {
                 component_separators = '|',
                 section_separators = '',
             },
+            sections = {
+                lualine_c = { 'filename', { working_directory, color = 'Comment' } }
+            }
         }
     end,
 }
