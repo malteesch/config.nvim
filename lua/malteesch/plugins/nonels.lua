@@ -17,7 +17,7 @@ return {
             opts = {
                 ensure_installed = {
                     'stylua',
-                    'yamllint'
+                    'yamllint',
                 },
             },
             dependencies = {

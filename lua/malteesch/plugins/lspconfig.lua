@@ -20,6 +20,9 @@ local servers = {
         },
     },
     jdtls = {},
+    groovyls = {},
+    tsserver = {},
+    eslint = {}
 }
 
 -- [[ Configure LSP ]]
