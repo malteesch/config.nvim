@@ -56,77 +56,19 @@ return {
             },
         },
     },
+    -- stylua: ignore
     keys = {
-        {
-            '<leader>sgf',
-            function()
-                require('telescope.builtin').git_files()
-            end,
-            desc = '[G]it [F]iles',
-        },
-        {
-            '<leader>sf',
-            function()
-                require('telescope.builtin').find_files()
-            end,
-            desc = '[F]iles',
-        },
-        {
-            '<leader>sh',
-            function()
-                require('telescope.builtin').help_tags()
-            end,
-            desc = '[H]elp',
-        },
-        {
-            '<leader>sw',
-            function()
-                require('telescope.builtin').grep_string()
-            end,
-            desc = 'current [W]ord',
-        },
-        {
-            '<leader>sg',
-            function()
-                require('telescope.builtin').live_grep()
-            end,
-            desc = '[G]rep',
-        },
-        {
-            '<leader>sd',
-            function()
-                require('telescope.builtin').diagnostics()
-            end,
-            desc = '[D]iagnostics',
-        },
-        {
-            '<leader>sr',
-            function()
-                require('telescope.builtin').resume()
-            end,
-            desc = '[R]esume',
-        },
-        {
-            '<leader>rf',
-            function()
-                require('telescope.builtin').oldfiles()
-            end,
-            desc = '[R]ecent [f]iles',
-        },
-        {
-            '<leader>sb',
-            function()
-                require('telescope.builtin').buffers()
-            end,
-            desc = 'existing [b]uffers',
-        },
-        {
-            '<leader>gl',
-            function()
-                require('malteesch.plugins.telescope.pickers').gitlab()
-            end,
-            desc = 'Open in [G]it[L]ab',
-        },
+        { '<leader>sgf', function() require('telescope.builtin').git_files() end,                desc = '[G]it [F]iles' },
+        { '<leader>sf',  function() require('telescope.builtin').find_files() end,               desc = '[F]iles' },
+        { '<leader>sh',  function() require('telescope.builtin').help_tags() end,                desc = '[H]elp' },
+        { '<leader>sw',  function() require('telescope.builtin').grep_string() end,              desc = 'current [W]ord' },
+        { '<leader>sg',  function() require('telescope.builtin').live_grep() end,                desc = '[G]rep' },
+        { '<leader>sd',  function() require('telescope.builtin').diagnostics() end,              desc = '[D]iagnostics' },
+        { '<leader>sr',  function() require('telescope.builtin').resume() end,                   desc = '[R]esume' },
+        { '<leader>rf',  function() require('telescope.builtin').oldfiles() end,                 desc = '[R]ecent [f]iles' },
+        { '<leader>sb',  function() require('telescope.builtin').buffers() end,                  desc = 'existing [b]uffers' },
+        { '<leader>gl',  function() require('malteesch.plugins.telescope.pickers').gitlab() end, desc = 'Open in [G]it[L]ab' },
+        { '<leader>sk',  function() require('telescope.builtin').keymaps() end, desc = '[K]eymaps' },
         {
             '<leader>/',
             function()

@@ -34,6 +34,7 @@ local options = {
     softtabstop = 4,
     expandtab = true,
     shiftwidth = 4,
+    shell = '/bin/zsh'
 }
 
 for key, value in pairs(globalOptions) do

@@ -8,6 +8,7 @@ return {
     end,
     opts = {
         flavour = 'mocha',
+        term_colors = true,
         integrations = {
             neotree = true,
             gitsigns = true,

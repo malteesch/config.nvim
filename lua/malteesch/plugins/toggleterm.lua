@@ -10,28 +10,31 @@ return {
             border = 'curved',
         },
     },
-    config = function(_, opts)
-        local tt = require 'toggleterm'
-        local Terminal = require('toggleterm.terminal').Terminal
-        tt.setup(opts)
-
-        local lazygit = Terminal:new {
-            cmd = 'lazygit',
-            direction = 'float',
-            hidden = true,
+    event = { 'VeryLazy' },
+    -- stylua: ignore
+    keys = {
+        { '<leader>lg',
+            function()
+                local Terminal = require('toggleterm.terminal').Terminal
+                Terminal:new {
+                    cmd = 'lazygit',
+                    dir = vim.fn.getcwd(0),
+                    direction = 'float',
+                    hidden = true,
+                }:toggle()
+            end,
+            desc = "[L]azy[g]it"
+        },
+        { '<leader>bt',
+            function()
+                local Terminal = require('toggleterm.terminal').Terminal
+                Terminal:new {
+                    cmd = 'btop',
+                    direction = 'float',
+                    hidden = true,
+                }:toggle()
+            end,
+            desc = "[b][t]op"
         }
-
-        local btop = Terminal:new {
-            cmd = 'btop',
-            direction = 'float',
-            hidden = true,
-        }
-
-        vim.keymap.set('n', '<leader>lg', function()
-            lazygit:toggle()
-        end, { desc = 'Terminal: [l]azy[g]it' })
-        vim.keymap.set('n', '<leader>bt', function()
-            btop:toggle()
-        end, { desc = 'Terminal: [b][t]op' })
-    end,
+    },
 }
