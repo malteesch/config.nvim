@@ -1,10 +1,10 @@
 local servers = {
     -- clangd = {},
-    -- gopls = {},
+    gopls = {},
     pyright = {},
     -- rust_analyzer = {},
     -- tsserver = {},
-    -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+    html = { filetypes = { 'html', 'twig', 'hbs', 'templ'} },
 
     yamlls = {
         yaml = {
@@ -22,7 +22,8 @@ local servers = {
     jdtls = {},
     groovyls = {},
     tsserver = {},
-    eslint = {}
+    eslint = {},
+    templ = { filetypes = { 'templ'} }
 }
 
 -- [[ Configure LSP ]]
@@ -68,6 +69,9 @@ local on_attach = function(_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
+    vim.keymap.set('n', '<leader>f', function ()
+        vim.lsp.buf.format()
+    end, { desc = 'Format current buffer with LSP', buffer = bufnr })
 end
 
 return {
@@ -90,6 +94,7 @@ return {
         'hrsh7th/cmp-nvim-lsp',
     },
     init = function()
+        vim.filetype.add({ extension = { templ = "templ" } })
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 

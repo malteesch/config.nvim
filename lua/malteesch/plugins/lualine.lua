@@ -23,7 +23,7 @@ return {
                 lualine_c = {
                     'filename',
                     { working_directory, color = 'Comment', padding = { right = 0 } },
-                    { project_name, padding = { left = 0 } }
+                    { project_name, padding = { left = 0 } },
                 },
             },
         }
