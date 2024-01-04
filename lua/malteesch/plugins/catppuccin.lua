@@ -29,6 +29,7 @@ return {
         custom_highlights = function(colors)
             return {
                 CursorLineNr = { fg = colors.teal },
+                LineNr = { fg = colors.overlay2 },
             }
         end,
     },
