@@ -1,5 +1,9 @@
 local function working_directory()
-    return vim.fn.getcwd()
+    return vim.fs.dirname(vim.fn.getcwd()) .. '/'
+end
+
+local function project_name()
+    return vim.fs.basename(vim.fn.getcwd())
 end
 
 return {
@@ -16,8 +20,12 @@ return {
                 section_separators = '',
             },
             sections = {
-                lualine_c = { 'filename', { working_directory, color = 'Comment' } }
-            }
+                lualine_c = {
+                    'filename',
+                    { working_directory, color = 'Comment', padding = { right = 0 } },
+                    { project_name, padding = { left = 0 } }
+                },
+            },
         }
     end,
 }
