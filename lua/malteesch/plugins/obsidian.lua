@@ -11,7 +11,7 @@ return {
     },
     dependencies = {
         -- Required.
-        'nvim-lua/plenary.nvim',
+        'plenary',
         'hrsh7th/nvim-cmp',
         'nvim-telescope/telescope.nvim',
         'nvim-telescope/telescope.nvim',

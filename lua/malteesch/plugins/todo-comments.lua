@@ -1,7 +1,7 @@
 return {
     'folke/todo-comments.nvim',
     dependencies = {
-        'nvim-lua/plenary.nvim',
+        'plenary',
         'nvim-treesitter/nvim-treesitter',
     },
     opts = {

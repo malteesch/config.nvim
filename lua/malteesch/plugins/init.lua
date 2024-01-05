@@ -3,8 +3,8 @@ return {
     'tpope/vim-rhubarb',
     'tpope/vim-sleuth',
 
-    'mfussenegger/nvim-dap',
-    'mfussenegger/nvim-jdtls',
+    {'mfussenegger/nvim-jdtls', ft = { 'java' }},
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', name = 'comment', opts = {} },
+    { 'nvim-lua/plenary.nvim', name = 'plenary', lazy = true }
 }
