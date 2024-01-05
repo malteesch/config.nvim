@@ -6,5 +6,5 @@ return {
     'mfussenegger/nvim-dap',
     'mfussenegger/nvim-jdtls',
     -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim', opts = {} },
+    { 'numToStr/Comment.nvim', name = 'comment', opts = {} },
 }
