@@ -1,7 +1,7 @@
 return {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
+    event = { 'BufEnter' },
     opts = {
         -- See `:help gitsigns.txt`
         signs = {
@@ -12,7 +12,17 @@ return {
             changedelete = { text = '|' },
         },
         on_attach = function(bufnr)
-            vim.keymap.set('n', '<leader>ghp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[G]it [h]unk [p]review' })
+            vim.keymap.set('n', '<leader>ghp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[h]unk [p]review' })
+            vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { buffer = bufnr, desc = '[G]it [b]lame line' })
+            vim.keymap.set('n', '<leader>tgd', require('gitsigns').toggle_word_diff, { buffer = bufnr, desc = '[g]it word [d]iff' })
+            vim.keymap.set('n', '<leader>ghr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = '[h]unk [r]eset' })
+            vim.keymap.set('n', '<leader>ghp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[h]unk [p]review' })
+            vim.keymap.set('n', '<leader>gfr', function()
+                local result = vim.fn.confirm('Reset all changes in this file?', '&Yes\n&No', 2, 'Warning')
+                if result == 1 then
+                    require('gitsigns').reset_buffer()
+                end
+            end, { buffer = bufnr, desc = '[f]ile [r]eset' })
 
             -- don't override the built-in and fugitive keymaps
             local gs = package.loaded.gitsigns
@@ -35,9 +45,5 @@ return {
                 return '<Ignore>'
             end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
         end,
-    },
-    keys = {
-        { '<leader>gb', '<cmd>Gitsigns blame_line<CR>', desc = '[G]it [b]lame line' },
-        { '<leader>gd', '<cmd>Gitsigns toggle_word_diff<CR>', desc = 'Toggle [g]it word [d]iff' },
     },
 }
