@@ -3,8 +3,11 @@ return {
     dependencies = {
         'plenary',
         'sindrets/diffview.nvim',
-        -- Only one of these is needed, not both.
-        'telescope', -- optional
+        'telescope',
     },
     opts = {},
+    -- stylua: ignore
+    keys = {
+        { '<leader>gg', function() require("neogit").open() end, desc = "Open Neo[g]it" }
+    }
 }

@@ -13,18 +13,18 @@ return {
     event = { 'VeryLazy' },
     -- stylua: ignore
     keys = {
-        { '<leader>lg',
-            function()
-                local Terminal = require('toggleterm.terminal').Terminal
-                Terminal:new {
-                    cmd = 'lazygit',
-                    dir = vim.fn.getcwd(0),
-                    direction = 'float',
-                    hidden = true,
-                }:toggle()
-            end,
-            desc = "[L]azy[g]it"
-        },
+        -- { '<leader>lg',
+        --     function()
+        --         local Terminal = require('toggleterm.terminal').Terminal
+        --         Terminal:new {
+        --             cmd = 'lazygit',
+        --             dir = vim.fn.getcwd(0),
+        --             direction = 'float',
+        --             hidden = true,
+        --         }:toggle()
+        --     end,
+        --     desc = "[L]azy[g]it"
+        -- },
         { '<leader>bt',
             function()
                 local Terminal = require('toggleterm.terminal').Terminal
