@@ -4,6 +4,7 @@ return {
         'plenary',
         'nvim-treesitter/nvim-treesitter',
     },
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
         keywords = {
             FIX = {

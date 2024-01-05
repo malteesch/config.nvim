@@ -5,7 +5,6 @@ return {
         'telescope',
         'diffview',
     },
-    event = { 'BufEnter' },
     keys = {
         -- stylua: ignore start
         { '<leader>gg',  function() require('neogit').open() end, desc = 'Open Neo[g]it' },

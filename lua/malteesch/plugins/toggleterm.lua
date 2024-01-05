@@ -1,3 +1,4 @@
+--- @type LazyPluginSpec
 return {
     'akinsho/toggleterm.nvim',
     version = '*',
@@ -10,9 +11,9 @@ return {
             border = 'curved',
         },
     },
-    event = { 'VeryLazy' },
     -- stylua: ignore
     keys = {
+        { [[<C-\>]] },
         -- { '<leader>lg',
         --     function()
         --         local Terminal = require('toggleterm.terminal').Terminal

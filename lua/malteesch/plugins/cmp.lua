@@ -7,6 +7,7 @@ return {
         'luasnip',
         'FelipeLema/cmp-async-path',
     },
+    event = { 'InsertEnter' },
     opts = function()
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
