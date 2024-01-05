@@ -13,8 +13,7 @@ return {
         -- Required.
         'plenary',
         'hrsh7th/nvim-cmp',
-        'nvim-telescope/telescope.nvim',
-        'nvim-telescope/telescope.nvim',
+        'telescope',
         'nvim-treesitter/nvim-treesitter',
     },
     opts = {
