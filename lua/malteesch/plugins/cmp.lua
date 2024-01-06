@@ -60,17 +60,29 @@ return {
                 end, { 'i', 's' }),
                 ['<C-s>'] = cmp.mapping(function(fallback)
                     if luasnip.choice_active() then
-                        require("luasnip.extras.select_choice")()
+                        require 'luasnip.extras.select_choice'()
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
             },
-            sources = {
+            sources = cmp.config.sources {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'async_path' },
             },
         }
+    end,
+    config = function(_, opts)
+        local cmp = require 'cmp'
+        cmp.setup(opts)
+
+        cmp.setup.filetype({ 'sql', 'mysql', 'plsql' }, {
+            sources = cmp.config.sources {
+                { name = 'vim-dadbod-completion' },
+                { name = 'luasnip' },
+                { name = 'buffer' },
+            },
+        })
     end,
 }
