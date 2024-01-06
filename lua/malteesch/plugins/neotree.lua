@@ -19,6 +19,13 @@ return {
                 enabled = true,
             },
         },
+        nesting_rules = {
+            ['mod'] = { 'sum' },
+            ['package.json'] = {
+                pattern = '^package%.json$',
+                files = { 'package-lock.json' },
+            },
+        },
     },
     keys = {
         { '<leader>fo', '<cmd>Neotree focus position=float<CR>', 'n', desc = '[o]pen' },
