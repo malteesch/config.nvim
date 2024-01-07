@@ -24,15 +24,17 @@ local function make_display(entry)
 end
 
 local function make_value(line)
-    return vim.fs.dirname(line):gsub('(%./)', '')
+    local dir = line:gsub('%.git/', ''):gsub('/$', '')
+    return dir
 end
 
 local function make_name(line)
-    return vim.fs.basename(vim.fs.dirname(line))
+    local split = vim.split(line, '/', { trimempty = true })
+    return split[#split - 1]
 end
 
-local function make_path(line)
-    return DIR .. '/' ..make_value(line)
+local function make_absolute_path(line)
+    return DIR .. '/' .. make_value(line)
 end
 
 local M = {}
@@ -42,14 +44,14 @@ M.projects = function(opts)
     pickers
         .new(opts, {
             prompt_title = 'Open project',
-            finder = finders.new_oneshot_job({ 'find', 'projects', '.config/nvim', '-type', 'd', '-name', '.git' }, {
+            finder = finders.new_oneshot_job({ 'fd', '--type', 'directory', '--hidden', '--no-ignore', '.git$', 'projects', '.config/nvim' }, {
                 entry_maker = function(line)
                     return {
                         name = make_name(line),
                         value = make_value(line),
                         ordinal = line,
                         display = make_display,
-                        path = make_path(line),
+                        path = make_absolute_path(line),
                     }
                 end,
                 cwd = DIR,
@@ -59,7 +61,6 @@ M.projects = function(opts)
                 actions.select_default:replace(function()
                     actions.close(prompt_bufnr)
                     local selection = action_state.get_selected_entry()
-                    vim.print(selection.path)
                     vim.api.nvim_set_current_dir(selection.path)
                 end)
                 return true
