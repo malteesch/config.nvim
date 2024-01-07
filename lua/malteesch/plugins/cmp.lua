@@ -30,28 +30,28 @@ return {
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
                 },
-                ['<C-k>'] = cmp.mapping(function(fallback)
+                ['<C-l>'] = cmp.mapping(function(fallback)
                     if luasnip.locally_jumpable(1) then
                         luasnip.jump(1)
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<C-j>'] = cmp.mapping(function(fallback)
+                ['<C-h>'] = cmp.mapping(function(fallback)
                     if luasnip.locally_jumpable(-1) then
                         luasnip.jump(-1)
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<C-l>'] = cmp.mapping(function(fallback)
+                ['<C-j>'] = cmp.mapping(function(fallback)
                     if luasnip.choice_active() then
                         luasnip.change_choice(1)
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<C-h>'] = cmp.mapping(function(fallback)
+                ['<C-k>'] = cmp.mapping(function(fallback)
                     if luasnip.choice_active() then
                         luasnip.change_choice(-1)
                     else
