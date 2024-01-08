@@ -44,7 +44,7 @@ local on_attach = function(_, bufnr)
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    nmap('<leader>n', vim.lsp.buf.rename, '[R]e[n]ame')
     nmap('<A-CR>', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
@@ -73,6 +73,12 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<leader>f', function()
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP', buffer = bufnr })
+    vim.keymap.set('x', '<leader>v', function()
+        require('refactoring').refactor 'Extract Variable'
+    end, { desc = 'Extract variable', buffer = bufnr })
+    vim.keymap.set({ 'n', 'x' }, '<leader>i', function()
+        require('refactoring').refactor 'Inline Variable'
+    end)
 end
 
 return {
@@ -93,6 +99,7 @@ return {
         -- Additional lua configuration, makes nvim stuff amazing!
         { 'folke/neodev.nvim', opts = {} },
         'hrsh7th/cmp-nvim-lsp',
+        'refactoring',
     },
     init = function()
         vim.filetype.add { extension = { templ = 'templ' } }
