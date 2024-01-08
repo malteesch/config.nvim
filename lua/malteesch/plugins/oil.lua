@@ -14,7 +14,7 @@ return {
         },
         float = {
             max_width = 80,
-            max_height = 25,
+            max_height = 40,
         },
     },
     keys = {
