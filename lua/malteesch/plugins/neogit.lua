@@ -11,5 +11,12 @@ return {
         { '<leader>gfh', function() require("diffview").file_history(nil, { '%' }) end, desc = '[f]ile [h]istory' },
         -- stylua: ignore end
     },
-    opts = {},
+    opts = {
+        mappings = {
+            status = {
+                ['o'] = 'GoToFile',
+                ['<enter>'] = 'Toggle',
+            }
+        }
+    },
 }
