@@ -9,6 +9,9 @@ return {
       "BufReadPre " .. vim.fn.expand('~') .. "/Cerebro/**.md",
       "BufNewFile " .. vim.fn.expand('~') .. "/Cerebro/**.md",
     },
+    cmd = {
+        'ObsidianNew',
+    },
     dependencies = {
         -- Required.
         'plenary',
