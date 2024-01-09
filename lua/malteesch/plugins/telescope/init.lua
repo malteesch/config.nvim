@@ -51,6 +51,10 @@ return {
         pickers = {
             find_files = {
                 theme = 'dropdown',
+                layout_config = {
+                    width = 0.8,
+                    height = 0.3,
+                },
             },
             oldfiles = {
                 theme = 'dropdown',
