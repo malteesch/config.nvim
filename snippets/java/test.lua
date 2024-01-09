@@ -15,7 +15,7 @@ void {1}() {{
         ),
         {
             show_condition = function()
-                local query = vim.treesitter.query.parse('java', '(class_declaration name: (identifier))')
+                local query = vim.treesitter.query.parse('java', '(class_declaration name: (identifier) @class_name)')
                 local root = vim.treesitter.get_node():tree():root()
                 local last_line = vim.fn.line('$')
 
