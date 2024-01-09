@@ -56,6 +56,7 @@ return {
                     height = 0.3,
                 },
                 find_command = { 'rg', '--hidden', '--files' },
+                prompt_prefix = ' 󰱼 '
             },
             oldfiles = {
                 theme = 'dropdown',
