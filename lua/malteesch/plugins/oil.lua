@@ -19,7 +19,7 @@ return {
     },
     keys = {
         -- stylua: ignore start
-        { '<leader>fo', function() require("oil").open_float() end },
+        { '<leader>fo', function() require("oil").open_float() end, desc = '[o]pen' },
         -- stylua: ignore end
     },
     dependencies = { 'nvim-tree/nvim-web-devicons' },

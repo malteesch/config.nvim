@@ -80,9 +80,9 @@ return {
             type = 'group',
             val = {
                 button('e', '  New file', '<cmd>ene <CR>'),
-                button('SPC s f', '󰈞  Find file'),
-                button('SPC r f', '󰊄  Recently opened files'),
-                button('SPC s g', '󰈬  Find word'),
+                button('SPC f f', '󰈞  Find file'),
+                button('SPC o f', '󰊄  Recently opened files'),
+                button('SPC g', '󰈬  Find word'),
             },
             opts = {
                 spacing = 1,
