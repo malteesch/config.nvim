@@ -26,7 +26,7 @@ local options = {
     completeopt = 'menuone,noselect',
     termguicolors = true,
     wrap = false,
-    sidescroll = 10,
+    sidescrolloff = 15,
     cursorline = true,
     cursorlineopt = 'both',
     showmode = false,
@@ -34,7 +34,8 @@ local options = {
     softtabstop = 4,
     expandtab = true,
     shiftwidth = 4,
-    shell = '/bin/zsh'
+    shell = '/bin/zsh',
+    scrolloff = 10
 }
 
 for key, value in pairs(globalOptions) do
