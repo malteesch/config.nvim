@@ -55,6 +55,7 @@ return {
                     width = 0.8,
                     height = 0.3,
                 },
+                find_command = { 'rg', '--hidden', '--files' },
             },
             oldfiles = {
                 theme = 'dropdown',
