@@ -66,6 +66,15 @@ return {
     -- stylua: ignore
     keys = {
         { '<leader>ff', function() require('telescope.builtin').find_files() end,                 desc = '[F]iles' },
+        {
+            '<leader>faf',
+            function()
+                require('telescope.builtin').find_files({
+                    find_command = { 'rg', '--no-ignore', '--hidden', '--files' }
+                })
+            end,
+            desc = '[a]ll [F]iles'
+        },
         { '<leader>fh', function() require('telescope.builtin').help_tags() end,                  desc = '[H]elp' },
         { '<leader>fw', function() require('telescope.builtin').grep_string() end,                desc = 'current [W]ord' },
         { '<leader>g',  function() require('telescope.builtin').live_grep() end,                  desc = '[G]rep' },
