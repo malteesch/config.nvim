@@ -32,6 +32,6 @@ return {
     },
     config = function (_, opts)
         require("obsidian").setup(opts)
-        vim.o.conceallevel = 1
+        vim.o.conceallevel = 2
     end
 }
