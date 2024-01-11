@@ -1,6 +1,7 @@
 --- @type LazyPluginSpec
 return {
     'stevearc/oil.nvim',
+    lazy = false,
     opts = {
         default_file_explorer = true,
         delete_to_trash = true,
