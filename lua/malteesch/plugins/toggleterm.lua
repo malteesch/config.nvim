@@ -11,6 +11,7 @@ return {
             border = 'curved',
         },
     },
+    cmd = { 'ToggleTerm' },
     -- stylua: ignore
     keys = {
         { [[<C-\>]] },
