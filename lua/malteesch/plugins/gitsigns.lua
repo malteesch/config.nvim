@@ -5,16 +5,18 @@ return {
     opts = {
         -- See `:help gitsigns.txt`
         signs = {
-            add = { text = '|' },
-            change = { text = '|' },
+            add = { text = '+' },
+            change = { text = '~' },
             delete = { text = '_' },
             topdelete = { text = '‾' },
-            changedelete = { text = '|' },
+            changedelete = { text = '~' },
+            untracked = { text = '+' },
         },
         on_attach = function(bufnr)
             vim.keymap.set('n', '<leader>ghp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[h]unk [p]review' })
             vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line, { buffer = bufnr, desc = '[G]it [b]lame line' })
             vim.keymap.set('n', '<leader>tgd', require('gitsigns').toggle_word_diff, { buffer = bufnr, desc = '[g]it word [d]iff' })
+            vim.keymap.set('n', '<leader>tgl', require('gitsigns').toggle_linehl, { buffer = bufnr, desc = '[g]it [l]ine highlight' })
             vim.keymap.set('n', '<leader>ghr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = '[h]unk [r]eset' })
             vim.keymap.set('n', '<leader>ghp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[h]unk [p]review' })
             vim.keymap.set('n', '<leader>gfr', function()
@@ -26,18 +28,18 @@ return {
 
             -- don't override the built-in and fugitive keymaps
             local gs = package.loaded.gitsigns
-            vim.keymap.set({ 'n', 'v' }, ']c', function()
+            vim.keymap.set({ 'n', 'v' }, '<leader>j', function()
                 if vim.wo.diff then
-                    return ']c'
+                    return '<leader>j'
                 end
                 vim.schedule(function()
                     gs.next_hunk()
                 end)
                 return '<Ignore>'
             end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-            vim.keymap.set({ 'n', 'v' }, '[c', function()
+            vim.keymap.set({ 'n', 'v' }, '<leader>k', function()
                 if vim.wo.diff then
-                    return '[c'
+                    return '<leader>k'
                 end
                 vim.schedule(function()
                     gs.prev_hunk()
