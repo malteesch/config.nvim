@@ -15,28 +15,17 @@ return {
     -- stylua: ignore
     keys = {
         { [[<C-\>]] },
-        -- { '<leader>lg',
-        --     function()
-        --         local Terminal = require('toggleterm.terminal').Terminal
-        --         Terminal:new {
-        --             cmd = 'lazygit',
-        --             dir = vim.fn.getcwd(0),
-        --             direction = 'float',
-        --             hidden = true,
-        --         }:toggle()
-        --     end,
-        --     desc = "[L]azy[g]it"
-        -- },
-        { '<leader>bt',
+        { '<leader>lg',
             function()
                 local Terminal = require('toggleterm.terminal').Terminal
                 Terminal:new {
-                    cmd = 'btop',
+                    cmd = 'lazygit',
+                    dir = vim.fn.getcwd(0),
                     direction = 'float',
                     hidden = true,
                 }:toggle()
             end,
-            desc = "[b][t]op"
-        }
+            desc = "[L]azy[g]it"
+        },
     },
 }
