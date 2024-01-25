@@ -4,7 +4,9 @@ local servers = {
     pyright = {},
     rust_analyzer = {},
     -- tsserver = {},
-    html = {},
+    html = {
+        filetypes = { 'html', 'templ' },
+    },
 
     yamlls = {
         yaml = {
@@ -27,7 +29,13 @@ local servers = {
     tsserver = {},
     eslint = {},
     templ = {},
-    tailwindcss = {},
+    tailwindcss = {
+        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        init_options = { userLanguages = { templ = "html" } }
+    },
+    htmx = {
+        filetypes = { 'html', 'templ' },
+    }
 }
 
 -- [[ Configure LSP ]]
@@ -123,6 +131,7 @@ return {
                     on_attach = on_attach,
                     settings = servers[server_name],
                     filetypes = (servers[server_name] or {}).filetypes,
+                    init_options = (servers[server_name] or {}).init_options,
                 }
             end,
             jdtls = function(server_name)
