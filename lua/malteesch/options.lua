@@ -35,7 +35,8 @@ local options = {
     expandtab = true,
     shiftwidth = 4,
     shell = '/bin/zsh',
-    scrolloff = 10
+    scrolloff = 10,
+    exrc = true,
 }
 
 for key, value in pairs(globalOptions) do
