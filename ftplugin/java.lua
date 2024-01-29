@@ -34,6 +34,7 @@ local on_attach = function(_, bufnr)
     nnoremap('gr', function()
         require('trouble').open 'lsp_references'
     end, bufopts, 'Go to references')
+    nnoremap('<leader>ds', require('telescope.builtin').lsp_document_symbols, bufopts, '[D]ocument [S]ymbols')
     nnoremap('K', vim.lsp.buf.hover, bufopts, 'Hover text')
     vim.keymap.set({ 'i', 'n' }, '<C-p>', vim.lsp.buf.signature_help, { noremap = true, silent = true, buffer = bufnr, desc = 'Show signature' })
     -- nnoremap('<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts, "Add workspace folder")
