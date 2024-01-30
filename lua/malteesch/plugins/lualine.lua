@@ -10,9 +10,12 @@ local function relative_file_path()
     local dir = vim.fn.expand '%:h'
     if dir == '' then
         return ''
+    elseif dir == '.' then
+        return '/'
     else
         return '/' .. dir .. '/'
     end
+
 end
 
 local function filename()
