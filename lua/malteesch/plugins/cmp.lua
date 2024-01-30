@@ -4,13 +4,16 @@ return {
     'hrsh7th/nvim-cmp',
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-cmdline',
         'luasnip',
         'FelipeLema/cmp-async-path',
+        'onsails/lspkind.nvim',
     },
     event = { 'InsertEnter' },
     opts = function()
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
+        local lspkind = require 'lspkind'
 
         return {
             snippet = {
@@ -71,6 +74,9 @@ return {
                 { name = 'luasnip' },
                 { name = 'async_path' },
             },
+            formatting = {
+                format = lspkind.cmp_format(),
+            },
         }
     end,
     config = function(_, opts)
@@ -83,6 +89,14 @@ return {
                 { name = 'luasnip' },
                 { name = 'buffer' },
             },
+        })
+
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' },
+                { name = 'cmdline' },
+            }),
         })
     end,
 }
