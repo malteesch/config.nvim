@@ -11,30 +11,27 @@ return {
             border = 'curved',
         },
     },
-    cmd = { 'ToggleTerm' },
-    -- stylua: ignore
-    keys = {
-        { [[<C-\>]] },
-        { '<leader>lg',
-            function()
-                local Terminal = require('toggleterm.terminal').Terminal
-                local lazygit = Terminal:new {
-                    cmd = 'lazygit',
-                    dir = vim.fn.getcwd(0),
-                    direction = 'float',
-                    hidden = true,
-                    env = {
-                        NVIM_SERVER_NAME = vim.v.servername
-                    }
-                }:toggle()
-                vim.api.nvim_create_user_command('OpenFromLazyGit', function(opts)
-                    lazygit:close()
-                    vim.cmd.edit(opts.args)
-                end, {
-                    nargs = 1
-                })
-            end,
-            desc = "[L]azy[g]it"
-        },
-    },
+    init = function()
+        local Terminal = require('toggleterm.terminal').Terminal
+        local lazygit = Terminal:new({
+            cmd = 'lazygit',
+            dir = vim.fn.getcwd(0),
+            direction = 'float',
+            hidden = true,
+            env = {
+                NVIM_SERVER_NAME = vim.v.servername,
+            },
+            on_open = function (term)
+                vim.keymap.set('t', 'q', function() term:toggle() end, { buffer = term.bufnr })
+            end
+        })
+        lazygit:spawn()
+
+        vim.api.nvim_create_user_command('OpenFromLazyGit', function(cmd_opts)
+            lazygit:toggle()
+            vim.cmd.edit(cmd_opts.args)
+        end, { nargs = 1 })
+
+        vim.keymap.set('n', '<leader>lg', function() lazygit:toggle() end, { desc = '[L]azy[g]it' })
+    end
 }
