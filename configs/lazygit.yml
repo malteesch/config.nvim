@@ -1,0 +1,11 @@
+---
+os:
+  editInTerminal: false
+  edit: |
+    nvim \
+      --server "${NVIM_SERVER_NAME}" \
+      --remote-send "<cmd>OpenFromLazyGit {{filename}}<CR>"
+  editAtLine: |
+    nvim \
+      --server "${NVIM_SERVER_NAME}" \
+      --remote-send "<cmd>OpenFromLazyGit {{filename}} {{line}}<CR>"
