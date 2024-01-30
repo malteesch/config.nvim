@@ -33,7 +33,7 @@ return {
     init = function()
         vim.schedule(function()
             local Terminal = require('toggleterm.terminal').Terminal
-            local git_root = require('malteesch.util').find_git_root()
+            local git_root = require('malteesch.util').git.find_root()
             local lazygit = Terminal:new {
                 cmd = 'lazygit --use-config-file ' .. table.concat(lazygit_config_files, ','),
                 dir = vim.fn.getcwd(0),

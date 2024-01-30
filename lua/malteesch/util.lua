@@ -2,9 +2,10 @@ function P(...)
     vim.print(vim.inspect(...))
 end
 
-local M = {}
+local GIT = {}
+local STRING = {}
 
-M.find_git_root = function()
+GIT.find_root = function()
     -- Use the current buffer's path as the starting point for the git search
     local current_file = vim.api.nvim_buf_get_name(0)
     local current_dir
@@ -26,4 +27,14 @@ M.find_git_root = function()
     return git_root
 end
 
-return M
+--- @param self string
+--- @param other string
+--- @return boolean
+STRING.starts_with = function(self, other)
+    return string.sub(self, 1, string.len(other)) == other
+end
+
+return {
+    git = GIT,
+    string = STRING
+}
