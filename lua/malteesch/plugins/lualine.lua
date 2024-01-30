@@ -1,9 +1,9 @@
 local function working_directory()
-    return vim.fs.dirname(vim.fn.getcwd()) .. '/'
+    return vim.fs.dirname(vim.fn.getcwd() or '') .. '/'
 end
 
 local function project_name()
-    return vim.fs.basename(vim.fn.getcwd())
+    return vim.fs.basename(vim.fn.getcwd() or '')
 end
 
 local function relative_file_path()
