@@ -6,6 +6,19 @@ local function project_name()
     return vim.fs.basename(vim.fn.getcwd())
 end
 
+local function relative_file_path()
+    local dir = vim.fn.expand '%:h'
+    if dir == '' then
+        return ''
+    else
+        return '/' .. dir .. '/'
+    end
+end
+
+local function filename()
+    return vim.fn.expand '%:t'
+end
+
 return {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -21,9 +34,10 @@ return {
             },
             sections = {
                 lualine_c = {
-                    'filename',
-                    { working_directory, color = 'Comment', padding = { right = 0 } },
-                    { project_name, padding = { left = 0 } },
+                    { working_directory, color = 'Comment', padding = { right = 0, left = 1 } },
+                    { project_name, padding = { left = 0, right = 0 }, color = 'lualine_a_inactive' },
+                    { relative_file_path, padding = { left = 0 }, color = 'Comment' },
+                    { filename, padding = { left = 0 }, color = 'lualine_a_inactive' },
                 },
             },
         }
