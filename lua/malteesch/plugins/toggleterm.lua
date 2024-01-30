@@ -18,12 +18,21 @@ return {
         { '<leader>lg',
             function()
                 local Terminal = require('toggleterm.terminal').Terminal
-                Terminal:new {
+                local lazygit = Terminal:new {
                     cmd = 'lazygit',
                     dir = vim.fn.getcwd(0),
                     direction = 'float',
                     hidden = true,
+                    env = {
+                        NVIM_SERVER_NAME = vim.v.servername
+                    }
                 }:toggle()
+                vim.api.nvim_create_user_command('OpenFromLazyGit', function(opts)
+                    lazygit:close()
+                    vim.cmd.edit(opts.args)
+                end, {
+                    nargs = 1
+                })
             end,
             desc = "[L]azy[g]it"
         },
