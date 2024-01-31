@@ -44,7 +44,7 @@ return {
                 },
                 on_open = function(term)
                     -- stylua: ignore
-                    vim.keymap.set('t', 'q', function() term:toggle() end, { buffer = term.bufnr })
+                    vim.keymap.set('t', '<C-c>', function() term:toggle() end, { buffer = term.bufnr })
                 end,
             }
             lazygit:spawn()
