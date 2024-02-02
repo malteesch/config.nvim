@@ -37,6 +37,7 @@ local options = {
     shell = '/bin/zsh',
     scrolloff = 10,
     exrc = true,
+    foldcolumn = '1',
 }
 
 for key, value in pairs(globalOptions) do
