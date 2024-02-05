@@ -9,6 +9,8 @@ return {
         keymaps = {
             H = 'actions.toggle_hidden',
             ['?'] = 'actions.show_help',
+            ['.'] = 'actions.parent',
+            ['/'] = 'actions.open_cwd',
         },
         view_options = {
             show_hidden = true,
