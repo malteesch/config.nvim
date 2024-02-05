@@ -8,6 +8,7 @@ return {
         action_keys = {
             jump = { '<TAB>' },
             jump_close = { '<CR>' },
+            close = '<C-c>'
         },
         include_declaration = {},
         auto_jump = { 'lsp_definitions', 'lsp_implementations', 'lsp_references' },
