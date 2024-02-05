@@ -25,8 +25,8 @@ return {
                 completeopt = 'menu,menuone,noinsert',
             },
             mapping = cmp.mapping.preset.insert {
-                ['<C-n>'] = cmp.mapping.select_next_item(),
-                ['<C-p>'] = cmp.mapping.select_prev_item(),
+                ['<C-j>'] = cmp.mapping.select_next_item(),
+                ['<C-k>'] = cmp.mapping.select_prev_item(),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-y>'] = cmp.mapping.confirm {
@@ -47,14 +47,14 @@ return {
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<C-j>'] = cmp.mapping(function(fallback)
+                ['<C-n>'] = cmp.mapping(function(fallback)
                     if luasnip.choice_active() then
                         luasnip.change_choice(1)
                     else
                         fallback()
                     end
                 end, { 'i', 's' }),
-                ['<C-k>'] = cmp.mapping(function(fallback)
+                ['<C-p>'] = cmp.mapping(function(fallback)
                     if luasnip.choice_active() then
                         luasnip.change_choice(-1)
                     else
