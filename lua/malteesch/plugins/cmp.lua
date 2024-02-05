@@ -9,7 +9,7 @@ return {
         'FelipeLema/cmp-async-path',
         'onsails/lspkind.nvim',
     },
-    event = { 'InsertEnter' },
+    event = { 'InsertEnter', 'CmdlineEnter' },
     opts = function()
         local cmp = require 'cmp'
         local luasnip = require 'luasnip'
@@ -29,7 +29,7 @@ return {
                 ['<C-p>'] = cmp.mapping.select_prev_item(),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                ['<CR>'] = cmp.mapping.confirm {
+                ['<C-y>'] = cmp.mapping.confirm {
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = true,
                 },
