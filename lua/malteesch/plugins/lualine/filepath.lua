@@ -16,15 +16,18 @@ function M:update_status()
     local cwd = vim.fn.getcwd()
     local parent = vim.fs.dirname(cwd)
     local curr_file_abs = vim.fn.expand '%:p'
+    local parts = {
+        string.format('%s%s', highlight.component_format_highlight(self.colors.text), vim.fn.fnamemodify(parent, ':p:h')),
+        string.format('%s%s', highlight.component_format_highlight(self.colors.dir), vim.fs.basename(cwd)),
+    }
+    if curr_file_abs == '' then
+        return table.concat(parts, string.format('%s%s', highlight.component_format_highlight(self.colors.text), '/'))
+    end
     if not string_utils.starts_with(curr_file_abs, cwd) then
         return string.format('%s%s', highlight.component_format_highlight(self.colors.text), curr_file_abs)
 
     end
 
-    local parts = {
-        string.format('%s%s', highlight.component_format_highlight(self.colors.text), vim.fn.fnamemodify(parent, ':p:h')),
-        string.format('%s%s', highlight.component_format_highlight(self.colors.dir), vim.fs.basename(cwd)),
-    }
     local curr_file_dir = vim.fn.expand '%:.:h'
     if curr_file_dir ~= '.' then
         table.insert(parts, string.format('%s%s', highlight.component_format_highlight(self.colors.text), curr_file_dir))
