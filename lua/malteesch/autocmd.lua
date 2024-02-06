@@ -9,11 +9,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     pattern = '*',
 })
 
-local wezterm_group = vim.api.nvim_create_augroup('Wezterm', { clear = true })
-vim.api.nvim_create_autocmd('DirChanged', {
-    callback = function()
-        -- TODO implement syncing toggle pane dir
-    end,
-    group = wezterm_group,
-    pattern = '*',
-})
