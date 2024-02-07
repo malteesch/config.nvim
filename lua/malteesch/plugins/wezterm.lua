@@ -8,7 +8,7 @@ return {
         local wt = require 'wezterm'
 
         local wezterm_group = vim.api.nvim_create_augroup('Wezterm', { clear = true })
-        vim.api.nvim_create_autocmd('DirChanged', {
+        vim.api.nvim_create_autocmd({ 'VimEnter', 'DirChanged' }, {
             callback = function()
                 local pane_id = wt.get_current_pane()
                 if pane_id == nil then
