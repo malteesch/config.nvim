@@ -31,28 +31,36 @@ return {
         },
     },
     init = function()
-        vim.schedule(function()
-            local Terminal = require('toggleterm.terminal').Terminal
-            local git_root = require('malteesch.util').git.find_root()
-            local lazygit = Terminal:new {
-                cmd = 'lazygit --use-config-file ' .. table.concat(lazygit_config_files, ','),
-                dir = vim.fn.getcwd(0),
-                direction = 'float',
-                hidden = true,
-                env = {
-                    NVIM_SERVER_NAME = vim.v.servername,
-                },
-                on_open = function(term)
-                    -- stylua: ignore
-                    vim.keymap.set('t', '<C-c>', function() term:toggle() end, { buffer = term.bufnr })
-                end,
-            }
-            lazygit:spawn()
+        local Terminal = require('toggleterm.terminal').Terminal
+        local lazygit_group = vim.api.nvim_create_augroup('LazyGit', { clear = true })
+        local lazygit
+        vim.api.nvim_create_autocmd({ 'VimEnter', 'DirChanged' }, {
+            callback = function()
+                -- safely kill previous lazygit window
+                pcall(Terminal.shutdown, lazygit)
 
-            vim.api.nvim_create_user_command('OpenFromLazyGit', open_from_lazygit(lazygit, git_root), { nargs = '+' })
+                local git_root = require('malteesch.util').git.find_root()
+                lazygit = Terminal:new {
+                    cmd = 'lazygit --use-config-file ' .. table.concat(lazygit_config_files, ','),
+                    dir = vim.fn.getcwd(0),
+                    direction = 'float',
+                    hidden = true,
+                    env = {
+                        NVIM_SERVER_NAME = vim.v.servername,
+                    },
+                    on_open = function(term)
+                        -- stylua: ignore
+                        vim.keymap.set('t', '<C-c>', function() term:toggle() end, { buffer = term.bufnr })
+                    end,
+                }
+                lazygit:spawn()
+                vim.api.nvim_create_user_command('OpenFromLazyGit', open_from_lazygit(lazygit, git_root), { nargs = '+' })
 
-            -- stylua: ignore
-            vim.keymap.set('n', '<leader>lg', function() lazygit:toggle() end, { desc = '[L]azy[g]it' })
-        end)
+                -- stylua: ignore
+                vim.keymap.set('n', '<leader>lg', function() lazygit:toggle() end, { desc = '[L]azy[g]it' })
+            end,
+            pattern = '*',
+            group = lazygit_group,
+        })
     end,
 }
