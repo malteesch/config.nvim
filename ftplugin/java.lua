@@ -21,6 +21,85 @@ local function nnoremap(rhs, lhs, bufopts, desc)
     vim.keymap.set('n', rhs, lhs, bufopts)
 end
 
+-- TODO move all this to its own location
+
+--- @param node TSNode
+--- @param cursor integer[]
+local function cursor_is_in_range(node, cursor)
+    local row = cursor[1] - 1
+    local col = cursor[2]
+    local start_row, start_col, end_row, end_col = node:range()
+    -- P(string.format('row: start %s, end %s col: start %s, end %s cursor: row %s, col %s', start_row, end_row, start_col, end_col, row, col))
+    if start_row < row and end_row > row then
+        return true
+    end
+    if start_row == row and start_col <= col then
+        return true
+    end
+    if end_row == row and end_col >= col then
+        return true
+    end
+    return false
+end
+
+--- @param node TSNode
+--- @return string
+local function get_node_text(node)
+    local start_row, start_col, end_row, end_col = node:range()
+    return vim.api.nvim_buf_get_text(0, start_row, start_col, end_row, end_col, {})[1]
+end
+
+vim.keymap.set('n', '<leader>r', function()
+    local parser = require('nvim-treesitter.parsers').get_parser()
+    local query = vim.treesitter.query.parse(
+        parser:lang(),
+        [[(class_declaration
+              name: (identifier) @class_name
+              body: (class_body
+                      (method_declaration
+                        (modifiers
+                          (marker_annotation
+                            name: (identifier) @annotation_name))
+                        name: (identifier) @method_name) @method))
+        ]]
+    )
+
+    local root = parser:parse()[1]:root()
+    local last_line = vim.fn.line '$' or 0
+
+    for _, match, _ in query:iter_matches(root, 0, 1, last_line) do
+        local captures = {}
+        for id, node in pairs(match) do
+            -- local start_row, start_col, end_row, end_col = node:range()
+            captures[query.captures[id]] = node --vim.api.nvim_buf_get_text(0, start_row, start_col, end_row, end_col, {})[1]
+        end
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        if cursor_is_in_range(captures['method'], cursor) then
+            local annotation_name = get_node_text(captures['annotation_name'])
+            if annotation_name == 'Test' then
+                local class_name = get_node_text(captures['class_name'])
+                local method_name = get_node_text(captures['method_name'])
+                local wt = require 'wezterm'
+                local pane_id = wt.get_current_pane()
+                if pane_id == nil then
+                    return
+                end
+                wt.exec({ 'cli', 'zoom-pane', '--unzoom', '--pane-id', string.format('%d', pane_id), }, function() end)
+                wt.exec({ 'cli', 'activate-pane', '--pane-id', string.format('%d', pane_id + 1), }, function() end)
+                wt.exec({
+                    'cli',
+                    'send-text',
+                    '--no-paste',
+                    '--pane-id',
+                    string.format('%d', pane_id + 1),
+                    -- TODO find containing gradle module
+                    string.format("./gradlew test --tests='%s.%s' --info", class_name, method_name),
+                }, function() end)
+            end
+        end
+    end
+end)
+
 -- The on_attach function is used to set key maps after the language server
 -- attaches to the current buffer
 local on_attach = function(_, bufnr)
