@@ -22,7 +22,7 @@ return {
         vim.keymap.set('n', '<C-j>', function() harpoon:list():select(1) end, { desc = 'Jump to harpoon item 1' })
         vim.keymap.set('n', '<C-k>', function() harpoon:list():select(2) end, { desc = 'Jump to harpoon item 2' })
         vim.keymap.set('n', '<C-l>', function() harpoon:list():select(3) end, { desc = 'Jump to harpoon item 3' })
-        vim.keymap.set('n', '<C-h>', function() harpoon:list():select(4) end, { desc = 'Jump to harpoon item 4' })
+        vim.keymap.set('n', '<C-;>', function() harpoon:list():select(4) end, { desc = 'Jump to harpoon item 4' })
         -- stylua: ignore end
     end,
 }
