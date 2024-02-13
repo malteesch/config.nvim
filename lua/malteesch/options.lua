@@ -54,3 +54,5 @@ end
 
 -- consider hyphen part of a word
 vim.api.nvim_set_option('iskeyword', vim.api.nvim_get_option 'iskeyword' .. ',-')
+
+vim.filetype.add { extension = { jenkinsfile = 'groovy' } }
