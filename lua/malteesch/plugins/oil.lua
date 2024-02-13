@@ -13,7 +13,7 @@ return {
             ['/'] = 'actions.open_cwd',
         },
         view_options = {
-            show_hidden = true,
+            show_hidden = false,
         },
         float = {
             max_width = 80,
