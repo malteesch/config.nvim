@@ -49,7 +49,7 @@ local function get_node_text(node)
     return vim.api.nvim_buf_get_text(0, start_row, start_col, end_row, end_col, {})[1]
 end
 
-vim.keymap.set('n', '<leader>r', function()
+vim.keymap.set('n', ',r', function()
     local parser = require('nvim-treesitter.parsers').get_parser()
     local query = vim.treesitter.query.parse(
         parser:lang(),
