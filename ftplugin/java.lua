@@ -50,6 +50,7 @@ local function get_node_text(node)
 end
 
 vim.keymap.set('n', ',r', function()
+    vim.cmd.w()
     local parser = require('nvim-treesitter.parsers').get_parser()
     local query = vim.treesitter.query.parse(
         parser:lang(),
