@@ -77,7 +77,7 @@ vim.keymap.set('n', ',r', function()
         local cursor = vim.api.nvim_win_get_cursor(0)
         if cursor_is_in_range(captures['method'], cursor) then
             local annotation_name = get_node_text(captures['annotation_name'])
-            if annotation_name == 'Test' then
+            if annotation_name == 'Test' or annotation_name == 'ParameterizedTest' then
                 local class_name = get_node_text(captures['class_name'])
                 local method_name = get_node_text(captures['method_name'])
                 local wt = require 'wezterm'
