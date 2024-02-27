@@ -24,5 +24,12 @@ return {
         vim.keymap.set('n', '<C-l>', function() harpoon:list():select(3) end, { desc = 'Jump to harpoon item 3' })
         vim.keymap.set('n', '<C-;>', function() harpoon:list():select(4) end, { desc = 'Jump to harpoon item 4' })
         -- stylua: ignore end
+        harpoon:extend {
+            UI_CREATE = function(cx)
+                vim.keymap.set('n', '<C-c>', function()
+                    harpoon.ui:close_menu()
+                end, { buffer = cx.bufnr })
+            end,
+        }
     end,
 }
