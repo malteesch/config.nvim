@@ -4,6 +4,7 @@ end
 
 local GIT = {}
 local STRING = {}
+local TABLE = {}
 
 GIT.find_root = function()
     -- Use the current buffer's path as the starting point for the git search
@@ -34,7 +35,35 @@ STRING.starts_with = function(self, other)
     return string.sub(self, 1, string.len(other)) == other
 end
 
+function TABLE.map(table, transform_function)
+    local result = {}
+    for key, value in pairs(table) do
+        result[key] = transform_function(value)
+    end
+    return result
+end
+
+function TABLE.filter(t, filter_function)
+    local result = {}
+    for _, value in pairs(t) do
+        if filter_function(value) then
+            table.insert(result, value)
+        end
+    end
+    return result
+end
+
+function TABLE.any(t, predicate_function)
+    for _, value in pairs(t) do
+        if predicate_function(value) then
+            return true
+        end
+    end
+    return false
+end
+
 return {
     git = GIT,
-    string = STRING
+    string = STRING,
+    table = TABLE,
 }
