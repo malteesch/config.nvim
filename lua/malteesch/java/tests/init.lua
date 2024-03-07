@@ -1,4 +1,4 @@
-local ts_utils = require("malteesch.treesitter.utils")
+local ts_utils = require 'malteesch.treesitter.utils'
 
 local M = {}
 
@@ -38,6 +38,15 @@ function M.run_junit_test_in_wezterm()
                 if pane_id == nil then
                     return
                 end
+                local gradle_module_path = ''
+                local nearest_gradle_build_script = vim.fs.find({ 'build.gradle', 'build.gradle.kts' }, {
+                    upward = true,
+                    stop = vim.fs.dirname(vim.fn.getcwd()),
+                    path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+                })[1]
+                local _, e = string.find(nearest_gradle_build_script, vim.fn.getcwd(), 1, true)
+                gradle_module_path = vim.fs.dirname(nearest_gradle_build_script):sub(e + 1):gsub('/', ':')
+
                 wt.exec({ 'cli', 'zoom-pane', '--unzoom', '--pane-id', string.format('%d', pane_id) }, function() end)
                 wt.exec({ 'cli', 'activate-pane', '--pane-id', string.format('%d', pane_id + 1) }, function() end)
                 wt.exec({
@@ -46,8 +55,7 @@ function M.run_junit_test_in_wezterm()
                     '--no-paste',
                     '--pane-id',
                     string.format('%d', pane_id + 1),
-                    -- TODO find containing gradle module
-                    string.format("./gradlew test --tests='%s.%s' --info\n", class_name, method_name),
+                    string.format("./gradlew %s:test --tests='%s.%s' --info\n", gradle_module_path, class_name, method_name),
                 }, function() end)
             end
         end
