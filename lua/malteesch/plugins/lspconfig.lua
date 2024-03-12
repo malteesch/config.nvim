@@ -35,7 +35,8 @@ local servers = {
     },
     htmx = {
         filetypes = { 'html', 'templ' },
-    }
+    },
+    gleam = {}
 }
 
 -- [[ Configure LSP ]]
