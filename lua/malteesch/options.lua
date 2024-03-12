@@ -11,7 +11,6 @@ local windowOptions = {
 local options = {
     hlsearch = false,
     mouse = 'a',
-    clipboard = 'unnamedplus',
     breakindent = true,
     undofile = true,
     -- Case-insensitive searching UNLESS \C or capital in search
