@@ -34,10 +34,7 @@ function M.run_junit_test_in_wezterm()
                 local class_name = ts_utils.get_node_text(captures['class_name'])
                 local method_name = ts_utils.get_node_text(captures['method_name'])
                 local wt = require 'wezterm'
-                local pane_id = wt.get_current_pane()
-                if pane_id == nil then
-                    return
-                end
+                local tab_id = vim.fn.system("kitten @ ls | jq '.[].tabs | map(select(.is_active == true)) | first | .id'"):gsub('\n', '')
                 local gradle_module_path = ''
                 local nearest_gradle_build_script = vim.fs.find({ 'build.gradle', 'build.gradle.kts' }, {
                     upward = true,
@@ -47,16 +44,14 @@ function M.run_junit_test_in_wezterm()
                 local _, e = string.find(nearest_gradle_build_script, vim.fn.getcwd(), 1, true)
                 gradle_module_path = vim.fs.dirname(nearest_gradle_build_script):sub(e + 1):gsub('/', ':')
 
-                wt.exec({ 'cli', 'zoom-pane', '--unzoom', '--pane-id', string.format('%d', pane_id) }, function() end)
-                wt.exec({ 'cli', 'activate-pane', '--pane-id', string.format('%d', pane_id + 1) }, function() end)
-                wt.exec({
-                    'cli',
-                    'send-text',
-                    '--no-paste',
-                    '--pane-id',
-                    string.format('%d', pane_id + 1),
-                    string.format("./gradlew %s:test --tests='%s.%s' --info\n", gradle_module_path, class_name, method_name),
-                }, function() end)
+                vim.fn.system("kitten @ --to $KITTY_LISTEN_ON action kitten toggle_pane.py")
+                vim.fn.system(
+                    string.format(
+                        "kitten @ --to $KITTY_LISTEN_ON send-text --match='title:^toggle-%s$' '%s'",
+                        tab_id,
+                        string.format("./gradlew %s:test --tests='%s.%s' --info\n", gradle_module_path, class_name, method_name)
+                    )
+                )
             end
         end
     end
