@@ -1,3 +1,4 @@
+--- @type LazyPluginSpec
 return {
     'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -13,12 +14,11 @@ return {
         include_declaration = {},
         auto_jump = { 'lsp_definitions', 'lsp_implementations', 'lsp_references' },
     },
-    keys = {
-        {
-            '<leader>xx',
-            function()
-                require('trouble').toggle()
-            end,
-        },
-    },
+    config = function (_, opts)
+        local trouble = require("trouble")
+        trouble.setup(opts)
+        vim.keymap.set('n', '<leader>to', trouble.open)
+        vim.keymap.set('n', '<leader>tw', function () trouble.open("workspace_diagnostics") end)
+        vim.keymap.set('n', '<leader>td', function () trouble.open("document_diagnostics") end)
+    end,
 }
