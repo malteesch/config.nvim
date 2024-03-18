@@ -22,7 +22,7 @@ local function nnoremap(rhs, lhs, bufopts, desc)
 end
 
 vim.keymap.set('n', ',r', function()
-   require("malteesch.java.tests").run_junit_test_in_wezterm()
+   require("malteesch.java.tests").run_junit_test_in_toggle_pane()
 end)
 
 -- The on_attach function is used to set key maps after the language server

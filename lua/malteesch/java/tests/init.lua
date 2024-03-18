@@ -2,7 +2,7 @@ local ts_utils = require 'malteesch.treesitter.utils'
 
 local M = {}
 
-function M.run_junit_test_in_wezterm()
+function M.run_junit_test_in_toggle_pane()
     vim.cmd.w()
     local parser = require('nvim-treesitter.parsers').get_parser()
     local query = vim.treesitter.query.parse(
