@@ -33,7 +33,6 @@ function M.run_junit_test_in_wezterm()
             if annotation_name == 'Test' or annotation_name == 'ParameterizedTest' then
                 local class_name = ts_utils.get_node_text(captures['class_name'])
                 local method_name = ts_utils.get_node_text(captures['method_name'])
-                local wt = require 'wezterm'
                 local tab_id = vim.fn.system("kitten @ ls | jq '.[].tabs | map(select(.is_active == true)) | first | .id'"):gsub('\n', '')
                 local gradle_module_path = ''
                 local nearest_gradle_build_script = vim.fs.find({ 'build.gradle', 'build.gradle.kts' }, {
