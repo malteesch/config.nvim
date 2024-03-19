@@ -11,6 +11,11 @@ return {
     commit_editor = {
       kind = 'split'
     },
+    mappings = {
+      status = {
+        ['<C-c>'] = 'Close'
+      }
+    }
   },
   config = function (_, opts)
     local neogit = require('neogit')
