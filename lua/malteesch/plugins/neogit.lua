@@ -5,5 +5,15 @@ return {
     "plenary",
     "telescope"
   },
-  config = true
+  opts = {
+    kind = "tab",
+    commit_editor = {
+      kind = 'split'
+    },
+  },
+  config = function (_, opts)
+    local neogit = require('neogit')
+    neogit.setup(opts)
+    vim.keymap.set('n', '<leader>co', function () neogit.open({'commit'}) end)
+  end,
 }
