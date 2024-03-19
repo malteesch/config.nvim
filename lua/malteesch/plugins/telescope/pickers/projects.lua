@@ -44,18 +44,21 @@ M.projects = function(opts)
     pickers
         .new(opts, {
             prompt_title = 'Open project',
-            finder = finders.new_oneshot_job({ 'bkt', '--ttl=1h', '--stale=1m', '--', 'fd', '--type', 'directory', '--hidden', '--no-ignore', '.git$', 'projects', '.config/nvim' }, {
-                entry_maker = function(line)
-                    return {
-                        name = make_name(line),
-                        value = make_value(line),
-                        ordinal = line,
-                        display = make_display,
-                        path = make_absolute_path(line),
-                    }
-                end,
-                cwd = DIR,
-            }),
+            finder = finders.new_oneshot_job(
+                { 'bkt', '--ttl=1h', '--stale=1m', '--', 'fd', '--type', 'directory', '--hidden', '--no-ignore', '.git$', 'projects', '.config/nvim' },
+                {
+                    entry_maker = function(line)
+                        return {
+                            name = make_name(line),
+                            value = make_value(line),
+                            ordinal = line,
+                            display = make_display,
+                            path = make_absolute_path(line),
+                        }
+                    end,
+                    cwd = DIR,
+                }
+            ),
             sorter = conf.generic_sorter(opts),
             attach_mappings = function(prompt_bufnr)
                 actions.select_default:replace(function()
