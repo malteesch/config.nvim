@@ -44,7 +44,7 @@ M.projects = function(opts)
     pickers
         .new(opts, {
             prompt_title = 'Open project',
-            finder = finders.new_oneshot_job({ 'fd', '--type', 'directory', '--hidden', '--no-ignore', '.git$', 'projects', '.config/nvim' }, {
+            finder = finders.new_oneshot_job({ 'bkt', '--ttl=1h', '--stale=1m', '--', 'fd', '--type', 'directory', '--hidden', '--no-ignore', '.git$', 'projects', '.config/nvim' }, {
                 entry_maker = function(line)
                     return {
                         name = make_name(line),
