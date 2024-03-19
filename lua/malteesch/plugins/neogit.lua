@@ -6,7 +6,7 @@ return {
     "telescope"
   },
   opts = {
-    kind = "tab",
+    kind = "split",
     commit_editor = {
       kind = 'split'
     },
