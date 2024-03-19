@@ -3,7 +3,8 @@ return {
   "NeogitOrg/neogit",
   dependencies = {
     "plenary",
-    "telescope"
+    "telescope",
+    "sindrets/diffview.nvim"
   },
   opts = {
     kind = "split",
