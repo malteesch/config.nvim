@@ -21,5 +21,7 @@ return {
     local neogit = require('neogit')
     neogit.setup(opts)
     vim.keymap.set('n', '<leader>co', function () neogit.open({'commit'}) end)
+    vim.keymap.set('n', '<leader>gp', function () neogit.open({'pull'}) end)
+    vim.keymap.set('n', '<leader>gP', function () neogit.open({'push'}) end)
   end,
 }
