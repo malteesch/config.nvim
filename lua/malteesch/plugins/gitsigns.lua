@@ -30,18 +30,18 @@ return {
 
             -- don't override the built-in and fugitive keymaps
             local gs = package.loaded.gitsigns
-            vim.keymap.set({ 'n', 'v' }, '<leader>j', function()
+            vim.keymap.set({ 'n', 'v' }, ']h', function()
                 if vim.wo.diff then
-                    return '<leader>j'
+                    return ']h'
                 end
                 vim.schedule(function()
                     gs.next_hunk()
                 end)
                 return '<Ignore>'
             end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-            vim.keymap.set({ 'n', 'v' }, '<leader>k', function()
+            vim.keymap.set({ 'n', 'v' }, '[', function()
                 if vim.wo.diff then
-                    return '<leader>k'
+                    return '[h'
                 end
                 vim.schedule(function()
                     gs.prev_hunk()
