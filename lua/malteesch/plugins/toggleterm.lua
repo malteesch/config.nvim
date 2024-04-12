@@ -1,13 +1,13 @@
 --- @param term Terminal
 --- @param git_root string?
 --- @return fun(cmd_opts: table)
-local function open_from_lazygit(term, git_root)
+local function open_from_lazygit(term)
     return function(cmd_opts)
         term:toggle()
         if #cmd_opts.fargs == 2 then
-            vim.cmd('edit +' .. cmd_opts.fargs[2] .. ' ' .. git_root .. '/' .. cmd_opts.fargs[1])
+            vim.cmd('edit +' .. cmd_opts.fargs[2] .. ' ' .. cmd_opts.fargs[1])
         else
-            vim.cmd('edit ' .. git_root .. '/' .. cmd_opts.fargs[1])
+            vim.cmd('edit ' .. cmd_opts.fargs[1])
         end
     end
 end
@@ -39,7 +39,6 @@ return {
                 -- safely kill previous lazygit window
                 pcall(Terminal.shutdown, lazygit)
 
-                local git_root = require('malteesch.util').git.find_root()
                 lazygit = Terminal:new {
                     cmd = 'lazygit --use-config-file ' .. table.concat(lazygit_config_files, ','),
                     dir = vim.fn.getcwd(0),
@@ -54,7 +53,7 @@ return {
                     end,
                 }
                 lazygit:spawn()
-                vim.api.nvim_create_user_command('OpenFromLazyGit', open_from_lazygit(lazygit, git_root), { nargs = '+' })
+                vim.api.nvim_create_user_command('OpenFromLazyGit', open_from_lazygit(lazygit), { nargs = '+' })
 
                 -- stylua: ignore
                 vim.keymap.set('n', '<leader>lg', function() lazygit:toggle() end, { desc = '[L]azy[g]it' })
