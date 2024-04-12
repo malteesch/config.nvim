@@ -31,3 +31,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '\"+p', { noremap = true })
 vim.keymap.set('n', '<leader>P', '\"+P', { noremap = true })
 vim.keymap.set('n', '<leader>y', '\"+y', { noremap = true })
+
+-- quickfix list
+vim.keymap.set('n', '<leader>j', '<cmd>cnext<CR>', { desc = '[Q]uickfix list next item' })
+vim.keymap.set('n', '<leader>k', '<cmd>cprev<CR>', { desc = '[Q]uickfix list previous item' })
