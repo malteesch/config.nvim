@@ -13,7 +13,7 @@ return {
         harpoon:setup(opts)
 
         -- stylua: ignore start
-        vim.keymap.set('n', '<leader>ha', function() harpoon:list():append() end, { desc = '[a]ppend file' })
+        vim.keymap.set('n', '<leader>ha', function() harpoon:list():add() end, { desc = '[a]ppend file' })
         vim.keymap.set('n', '<leader>hp', function() harpoon:list():prepend() end, { desc = '[p]repend file' })
         vim.keymap.set('n', '<leader>hr', function() harpoon:list():remove() end, { desc = '[r]emove file' })
         vim.keymap.set('n', '<leader>hc', function() harpoon:list():clear() end, { desc = '[c]lear list' })
