@@ -36,7 +36,7 @@ local on_attach = function(_, bufnr)
         require('trouble').open 'lsp_implementations'
     end, bufopts, 'Go to implementation')
     nnoremap('gr', function()
-        require('trouble').open 'lsp_references'
+        require('telescope.builtin').lsp_references()
     end, bufopts, 'Go to references')
     nnoremap('<leader>ds', require('telescope.builtin').lsp_document_symbols, bufopts, '[D]ocument [S]ymbols')
     nnoremap('K', vim.lsp.buf.hover, bufopts, 'Hover text')
