@@ -1,7 +1,6 @@
 --- @type LazyPluginSpec
 return {
   "NeogitOrg/neogit",
-  branch = 'nightly',
   dependencies = {
     "plenary",
     "telescope",
