@@ -2,7 +2,7 @@ return {
     'nvim-lualine/lualine.nvim',
     config = function()
         local catppuccin = require 'lualine.themes.catppuccin-mocha'
-        catppuccin.normal.c.bg = '#1E1E2E'
+        catppuccin.normal.c.bg = 'none'
 
         require('lualine').setup {
             options = {

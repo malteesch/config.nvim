@@ -30,6 +30,7 @@ return {
             return {
                 CursorLineNr = { fg = colors.teal },
                 LineNr = { fg = colors.overlay2 },
+                Normal = { bg = colors.none }
             }
         end,
     },
