@@ -39,7 +39,7 @@ return {
                 end)
                 return '<Ignore>'
             end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-            vim.keymap.set({ 'n', 'v' }, '[', function()
+            vim.keymap.set({ 'n', 'v' }, '[h', function()
                 if vim.wo.diff then
                     return '[h'
                 end
