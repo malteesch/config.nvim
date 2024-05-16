@@ -19,6 +19,7 @@ return {
             'vim',
             'bash',
             'java',
+            'just',
             'kotlin',
             'regex',
             'markdown',
